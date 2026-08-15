@@ -4,6 +4,22 @@ Marketplace Consumer-to-Consumer (C2C) berbasis web dengan arsitektur modular **
 
 ---
 
+## 📸 Screenshots & Preview
+
+| Beranda & Promo (Home) | Detail Produk & Varian |
+| :---: | :---: |
+| ![Home Page](./screenshots/home.png) | ![Product Detail](./screenshots/product-detail.png) |
+
+| Keranjang Multi-Toko (Cart) | Checkout & Escrow |
+| :---: | :---: |
+| ![Cart](./screenshots/cart.png) | ![Checkout](./screenshots/checkout.png) |
+
+| Seller Center & Saldo | Riwayat Pesanan & Ulasan |
+| :---: | :---: |
+| ![Seller Dashboard](./screenshots/seller.png) | ![Order History](./screenshots/orders.png) |
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -82,6 +98,7 @@ go-market/
 │   ├── hash/                       # Helper bcrypt
 │   ├── jwt/                        # Helper token JWT
 │   └── response/                   # Format standar response JSON
+├── screenshots/                    # Tempat menyimpan file gambar screenshot UI
 ├── tests/
 │   └── integration_test.go         # End-to-end integration test suite
 ├── frontend/                       # Client SPA React.js
@@ -138,7 +155,7 @@ Aplikasi frontend akan aktif di `http://localhost:5173`.
 ## 🧪 Testing
 
 ### Automated Integration Tests (Go)
-Menjalankan seluruh skenario integration test (registrasi peran, keranjang multi-store, checkout atomik, proteksi role RBAC, webhook, pelepasan escrow, mutasi kas):
+Menjalankan seluruh skenario integration test:
 ```bash
 go test -v ./tests
 ```
