@@ -117,6 +117,7 @@ func TestCompleteC2CMarketplaceFlow(t *testing.T) {
 		"email":    "seller1@example.com",
 		"password": "password123",
 		"phone":    "08123456789",
+		"role":     "seller",
 	})
 	if w.Code != http.StatusCreated {
 		t.Fatalf("Seller 1 registration failed: %v", res)
@@ -130,6 +131,7 @@ func TestCompleteC2CMarketplaceFlow(t *testing.T) {
 		"email":    "seller2@example.com",
 		"password": "password123",
 		"phone":    "08123456780",
+		"role":     "seller",
 	})
 	if w.Code != http.StatusCreated {
 		t.Fatalf("Seller 2 registration failed: %v", res)
@@ -139,16 +141,27 @@ func TestCompleteC2CMarketplaceFlow(t *testing.T) {
 
 	// 3. Register Buyer
 	w, res = doRequest(app, "POST", "/api/v1/auth/register", "", map[string]interface{}{
-		"name":     "Buyer Budi",
+		"name":     "Buyer One",
 		"email":    "buyer@example.com",
 		"password": "password123",
 		"phone":    "08123456781",
+		"role":     "buyer",
 	})
 	if w.Code != http.StatusCreated {
 		t.Fatalf("Buyer registration failed: %v", res)
 	}
 	buyerData := res["data"].(map[string]interface{})
 	buyerToken := buyerData["access_token"].(string)
+
+	// 3.1 Verify that Buyer CANNOT create a store (must return 403 Forbidden)
+	w, res = doRequest(app, "POST", "/api/v1/stores", buyerToken, map[string]interface{}{
+		"store_name":  "Illegal Store by Buyer",
+		"domain_slug": "illegal-store",
+		"city_id":     1,
+	})
+	if w.Code != http.StatusForbidden {
+		t.Fatalf("Expected 403 Forbidden when buyer attempts to create store, got %d: %v", w.Code, res)
+	}
 
 	// 4. Create Store for Seller 1
 	w, res = doRequest(app, "POST", "/api/v1/stores", seller1Token, map[string]interface{}{

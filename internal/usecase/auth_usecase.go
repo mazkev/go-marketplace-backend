@@ -38,12 +38,17 @@ func (u *authUsecase) Register(ctx context.Context, req *domain.RegisterRequest)
 		return nil, err
 	}
 
+	userRole := domain.RoleBuyer
+	if req.Role == domain.RoleSeller {
+		userRole = domain.RoleSeller
+	}
+
 	user := &domain.User{
 		Name:         req.Name,
 		Email:        req.Email,
 		PasswordHash: hashedPassword,
 		Phone:        req.Phone,
-		Role:         domain.RoleBuyer,
+		Role:         userRole,
 	}
 
 	if err := u.userRepo.Create(ctx, user); err != nil {

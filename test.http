@@ -24,7 +24,8 @@ Content-Type: application/json
   "name": "Budi Seller Gadget",
   "email": "seller1@market.com",
   "password": "Password123!",
-  "phone": "081234567890"
+  "phone": "081234567890",
+  "role": "seller"
 }
 
 ### 1.2 Register Seller 2
@@ -36,7 +37,8 @@ Content-Type: application/json
   "name": "Siti Seller Fashion",
   "email": "seller2@market.com",
   "password": "Password123!",
-  "phone": "081234567891"
+  "phone": "081234567891",
+  "role": "seller"
 }
 
 ### 1.3 Register Buyer
@@ -45,10 +47,11 @@ POST {{baseUrl}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "Andi Pembeli",
+  "name": "Kevin Buyer",
   "email": "buyer@market.com",
   "password": "Password123!",
-  "phone": "081234567892"
+  "phone": "081234567892",
+  "role": "buyer"
 }
 
 ### 1.4 Login Buyer

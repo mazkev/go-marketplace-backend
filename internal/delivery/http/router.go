@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-market/internal/delivery/http/handler"
 	"go-market/internal/delivery/http/middleware"
+	"go-market/internal/domain"
 	"go-market/pkg/jwt"
 )
 
@@ -63,11 +64,12 @@ func SetupRouter(p RouterParams) *gin.Engine {
 			protected.GET("/user/addresses", p.AuthHandler.GetAddresses)
 			protected.POST("/user/addresses", p.AuthHandler.AddAddress)
 
-			// Store Registration (Buyer becomes Seller)
-			protected.POST("/stores", p.StoreHandler.CreateStore)
+			// Store Registration (Only users registered as Seller)
+			protected.POST("/stores", middleware.RequireRole(domain.RoleSeller), p.StoreHandler.CreateStore)
 
 			// Seller Management Endpoints
 			seller := protected.Group("/seller")
+			seller.Use(middleware.RequireRole(domain.RoleSeller))
 			{
 				seller.GET("/store", p.StoreHandler.GetMyStore)
 				seller.GET("/balance", p.StoreHandler.GetStoreBalance)

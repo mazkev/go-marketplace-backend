@@ -11,6 +11,7 @@ var (
 	ErrStoreAlreadyExists = errors.New("user already owns a store")
 	ErrSlugAlreadyTaken   = errors.New("store domain slug is already taken")
 	ErrStoreNotFound      = errors.New("store not found")
+	ErrUnauthorizedRole   = errors.New("akun dengan role pembeli (buyer) tidak diizinkan membuka toko seller, silakan daftar sebagai akun penjual (seller)")
 )
 
 type storeUsecase struct {
@@ -26,6 +27,15 @@ func NewStoreUsecase(storeRepo domain.StoreRepository, userRepo domain.UserRepos
 }
 
 func (u *storeUsecase) CreateStore(ctx context.Context, userID uint, req *domain.CreateStoreRequest) (*domain.StoreResponse, error) {
+	// Validate that the user has seller role
+	user, err := u.userRepo.GetByID(ctx, userID)
+	if err != nil {
+		return nil, ErrStoreNotFound
+	}
+	if user.Role != domain.RoleSeller {
+		return nil, ErrUnauthorizedRole
+	}
+
 	// Check if user already has a store
 	existingStore, _ := u.storeRepo.GetByUserID(ctx, userID)
 	if existingStore != nil {

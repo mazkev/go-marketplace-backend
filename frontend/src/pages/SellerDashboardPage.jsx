@@ -17,7 +17,7 @@ import { sellerService } from '../services/sellerService';
 import { productService } from '../services/productService';
 
 export const SellerDashboardPage = () => {
-  const { user, isAuthenticated, openLoginModal } = useAuth();
+  const { user, isAuthenticated, openLoginModal, openRegisterModal, logout } = useAuth();
 
   const [store, setStore] = useState(null);
   const [balance, setBalance] = useState(0);
@@ -68,10 +68,12 @@ export const SellerDashboardPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && user?.role === 'seller') {
       fetchSellerData();
+    } else {
+      setLoading(false);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user]);
 
   const fetchSellerData = async () => {
     setLoading(true);
@@ -240,6 +242,36 @@ export const SellerDashboardPage = () => {
         <button onClick={openLoginModal} className="btn btn-primary btn-lg">
           Silakan Masuk Untuk Mengakses Seller Center
         </button>
+      </div>
+    );
+  }
+
+  if (user?.role === 'buyer') {
+    return (
+      <div className="container" style={{ padding: '60px 16px', textAlign: 'center' }}>
+        <div className="card" style={{ maxWidth: '520px', margin: '0 auto', padding: '40px 28px' }}>
+          <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#FEF2F2', color: '#E02954', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+            <AlertCircle size={32} />
+          </div>
+          <h2 style={{ fontSize: '20px', fontWeight: 800, marginBottom: '8px' }}>Akses Seller Center Dibatasi</h2>
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '24px' }}>
+            Akun Anda (<strong>{user?.email}</strong>) terdaftar sebagai <strong>Pembeli (Buyer)</strong>. Akun Pembeli tidak diizinkan membuka toko atau mengakses Seller Center.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <button
+              onClick={() => {
+                logout();
+                openRegisterModal();
+              }}
+              className="btn btn-primary btn-lg btn-block"
+            >
+              Daftar Sebagai Penjual (Seller)
+            </button>
+            <a href="/" className="btn btn-secondary btn-block">
+              Kembali ke Beranda Belanja
+            </a>
+          </div>
+        </div>
       </div>
     );
   }
