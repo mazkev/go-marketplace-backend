@@ -1,6 +1,10 @@
 @import './variables.css';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
 
+:root {
+  color-scheme: light;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,11 +12,12 @@
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-body {
+html, body {
   background-color: var(--bg-page);
-  color: var(--text-primary);
+  color: #212121;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  color-scheme: light;
 }
 
 a {
@@ -29,6 +34,14 @@ button {
 
 input, select, textarea {
   font-family: inherit;
+  color: #212121 !important;
+  background-color: #ffffff !important;
+  color-scheme: light;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #8D96AA !important;
+  opacity: 1;
 }
 
 .container {
@@ -52,7 +65,7 @@ input, select, textarea {
 
 .btn-primary {
   background-color: var(--color-primary);
-  color: white;
+  color: #ffffff !important;
 }
 
 .btn-primary:hover {
@@ -61,7 +74,7 @@ input, select, textarea {
 
 .btn-outline {
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color-primary) !important;
   border: 1px solid var(--color-primary);
 }
 
@@ -71,7 +84,7 @@ input, select, textarea {
 
 .btn-secondary {
   background-color: var(--bg-page);
-  color: var(--text-primary);
+  color: var(--text-primary) !important;
 }
 
 .btn-secondary:hover {
@@ -80,7 +93,7 @@ input, select, textarea {
 
 .btn-orange {
   background-color: var(--color-secondary-orange);
-  color: white;
+  color: #ffffff !important;
 }
 
 .btn-orange:hover {
@@ -113,17 +126,17 @@ input, select, textarea {
 
 .badge-green {
   background-color: var(--color-primary-light);
-  color: var(--color-primary-dark);
+  color: var(--color-primary-dark) !important;
 }
 
 .badge-orange {
   background-color: var(--color-secondary-orange-light);
-  color: var(--color-secondary-orange);
+  color: var(--color-secondary-orange) !important;
 }
 
 .badge-red {
   background-color: var(--color-accent-red-light);
-  color: var(--color-accent-red);
+  color: var(--color-accent-red) !important;
 }
 
 /* Card */
@@ -132,6 +145,7 @@ input, select, textarea {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-light);
+  color: #212121;
 }
 
 /* Form controls */
@@ -143,7 +157,7 @@ input, select, textarea {
   display: block;
   font-size: 13px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: #4A5568;
   margin-bottom: 6px;
 }
 
@@ -151,11 +165,12 @@ input, select, textarea {
   width: 100%;
   padding: 10px 14px;
   font-size: 14px;
+  color: #212121 !important;
+  background-color: #ffffff !important;
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
   outline: none;
   transition: border-color 0.2s;
-  background: white;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -167,7 +182,7 @@ input, select, textarea {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,7 +191,8 @@ input, select, textarea {
 }
 
 .modal-card {
-  background: white;
+  background: #ffffff !important;
+  color: #212121 !important;
   border-radius: var(--radius-lg);
   width: 100%;
   max-width: 480px;
