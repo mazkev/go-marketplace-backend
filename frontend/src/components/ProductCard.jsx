@@ -69,12 +69,8 @@ export const ProductCard = ({ product }) => {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              transition: 'transform 0.3s ease',
             }}
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement.innerText = '🛍️';
-            }}
+            loading="lazy"
           />
         ) : (
           <div
