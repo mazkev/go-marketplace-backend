@@ -139,19 +139,26 @@ export const ProductDetailPage = () => {
               width: '100%',
               height: '380px',
               borderRadius: '16px',
-              background: 'linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%)',
+              background: '#F0FDF4',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '96px',
               overflow: 'hidden',
               marginBottom: '16px',
             }}
           >
-            🛍️
+            {product.image_url ? (
+              <img
+                src={product.image_url}
+                alt={product.name}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            ) : (
+              <div style={{ fontSize: '96px' }}>🛍️</div>
+            )}
           </div>
           <div style={{ display: 'flex', gap: '12px' }}>
-            {[1, 2, 3].map((_, i) => (
+            {[product.image_url, product.image_url, product.image_url].map((img, i) => (
               <div
                 key={i}
                 style={{
@@ -163,11 +170,15 @@ export const ProductDetailPage = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '24px',
+                  overflow: 'hidden',
                   cursor: 'pointer',
                 }}
               >
-                🛍️
+                {img ? (
+                  <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <span>🛍️</span>
+                )}
               </div>
             ))}
           </div>

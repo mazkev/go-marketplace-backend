@@ -86,20 +86,24 @@ export const CartPage = () => {
                         paddingBottom: '16px',
                       }}
                     >
-                      {/* Product Thumbnail Placeholder */}
+                      {/* Product Thumbnail */}
                       <div
                         style={{
                           width: '72px',
                           height: '72px',
                           borderRadius: '8px',
-                          background: 'linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%)',
+                          background: '#F0FDF4',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '28px',
+                          overflow: 'hidden',
                         }}
                       >
-                        🛍️
+                        {item.image_url ? (
+                          <img src={item.image_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        ) : (
+                          <span style={{ fontSize: '28px' }}>🛍️</span>
+                        )}
                       </div>
 
                       {/* Product Details */}

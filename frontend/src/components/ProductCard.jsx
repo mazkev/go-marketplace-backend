@@ -49,30 +49,47 @@ export const ProductCard = ({ product }) => {
         e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
       }}
     >
-      {/* Product Image Placeholder with Badge */}
+      {/* Product Image with Badge */}
       <div
         style={{
           width: '100%',
           paddingTop: '100%',
           position: 'relative',
-          background: 'linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          background: '#F0FDF4',
+          overflow: 'hidden',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '36px',
-          }}
-        >
-          🛍️
-        </div>
+        {product.image_url ? (
+          <img
+            src={product.image_url}
+            alt={product.name}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.3s ease',
+            }}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.parentElement.innerText = '🛍️';
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '36px',
+            }}
+          >
+            🛍️
+          </div>
+        )}
 
         {/* Wishlist Button */}
         <button

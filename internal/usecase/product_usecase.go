@@ -36,6 +36,7 @@ func (u *productUsecase) CreateProduct(ctx context.Context, userID uint, req *do
 		CategoryID:  req.CategoryID,
 		Name:        req.Name,
 		Description: req.Description,
+		ImageURL:    req.ImageURL,
 		Price:       req.Price,
 		Stock:       req.Stock,
 		Weight:      req.Weight,
@@ -95,6 +96,9 @@ func (u *productUsecase) UpdateProduct(ctx context.Context, userID uint, product
 	}
 	if req.Description != nil {
 		product.Description = *req.Description
+	}
+	if req.ImageURL != nil {
+		product.ImageURL = *req.ImageURL
 	}
 	if req.Price != nil {
 		product.Price = *req.Price

@@ -49,6 +49,7 @@ export const SellerDashboardPage = () => {
   // Add Product State
   const [productName, setProductName] = useState('');
   const [productDesc, setProductDesc] = useState('');
+  const [productImageUrl, setProductImageUrl] = useState('');
   const [productCategoryId, setProductCategoryId] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productStock, setProductStock] = useState('');
@@ -193,6 +194,7 @@ export const SellerDashboardPage = () => {
         category_id: parseInt(productCategoryId, 10),
         name: productName,
         description: productDesc,
+        image_url: productImageUrl,
         price: parseFloat(productPrice),
         stock: parseInt(productStock, 10) || 10,
         weight: parseInt(productWeight, 10) || 500,
@@ -201,6 +203,7 @@ export const SellerDashboardPage = () => {
       setMessage('Produk berhasil ditambahkan ke etalase toko!');
       setProductName('');
       setProductDesc('');
+      setProductImageUrl('');
       setProductPrice('');
       setProductStock('');
       setVariants([]);
@@ -542,6 +545,17 @@ export const SellerDashboardPage = () => {
                       <option key={c.id} value={c.id}>{c.name}</option>
                     ))}
                   </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">URL Gambar Produk (Image URL)</label>
+                  <input
+                    type="url"
+                    placeholder="https://images.unsplash.com/photo-..."
+                    value={productImageUrl}
+                    onChange={(e) => setProductImageUrl(e.target.value)}
+                    className="form-input"
+                  />
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>

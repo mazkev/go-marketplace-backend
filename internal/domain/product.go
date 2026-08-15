@@ -11,6 +11,7 @@ type Product struct {
 	CategoryID  uint             `gorm:"not null;index" json:"category_id"`
 	Name        string           `gorm:"size:255;not null;index" json:"name"`
 	Description string           `gorm:"type:text" json:"description"`
+	ImageURL    string           `gorm:"type:text" json:"image_url"`
 	Price       float64          `gorm:"type:decimal(15,2);not null" json:"price"`
 	Stock       int              `gorm:"not null;default:0" json:"stock"`
 	Weight      int              `gorm:"not null;default:0" json:"weight"` // in grams
@@ -44,6 +45,7 @@ type CreateProductRequest struct {
 	CategoryID  uint                          `json:"category_id" binding:"required"`
 	Name        string                        `json:"name" binding:"required,min=3,max=200"`
 	Description string                        `json:"description"`
+	ImageURL    string                        `json:"image_url"`
 	Price       float64                       `json:"price" binding:"required,gt=0"`
 	Stock       int                           `json:"stock" binding:"min=0"`
 	Weight      int                           `json:"weight" binding:"required,gt=0"`
@@ -54,6 +56,7 @@ type UpdateProductRequest struct {
 	CategoryID  *uint    `json:"category_id"`
 	Name        *string  `json:"name"`
 	Description *string  `json:"description"`
+	ImageURL    *string  `json:"image_url"`
 	Price       *float64 `json:"price"`
 	Stock       *int     `json:"stock"`
 	Weight      *int     `json:"weight"`
