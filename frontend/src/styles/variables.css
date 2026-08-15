@@ -1,0 +1,40 @@
+:root {
+  /* Tokopedia Colors */
+  --color-primary: #03AC0E;
+  --color-primary-hover: #028A0B;
+  --color-primary-light: #E8F5E9;
+  --color-primary-ultra-light: #F4FBF4;
+  
+  --color-secondary-orange: #FA591D;
+  --color-secondary-orange-light: #FFF0EB;
+  --color-accent-red: #E02954;
+  --color-accent-red-light: #FDE8ED;
+  --color-accent-yellow: #FFC400;
+
+  /* Neutrals & Surfaces */
+  --bg-page: #F3F4F5;
+  --bg-white: #FFFFFF;
+  --text-primary: #212121;
+  --text-secondary: #6D7588;
+  --text-muted: #8D96AA;
+  --border-light: #E5E7E9;
+  --border-medium: #D0D5DD;
+  --border-active: #03AC0E;
+
+  /* Elevations */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 4px rgba(141, 150, 170, 0.12);
+  --shadow-md: 0 4px 12px rgba(141, 150, 170, 0.18);
+  --shadow-lg: 0 8px 24px rgba(141, 150, 170, 0.22);
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --max-width: 1200px;
+}
