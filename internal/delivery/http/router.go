@@ -24,6 +24,7 @@ type RouterParams struct {
 func SetupRouter(p RouterParams) *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Recovery())
+	r.Use(middleware.CORSMiddleware())
 	r.Use(middleware.LoggerMiddleware())
 
 	// Health Check
