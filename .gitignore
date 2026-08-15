@@ -1,0 +1,22 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+dist/
+
+# Environment Variables
+.env
+
+# Database & SQLite files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
