@@ -16,7 +16,15 @@ dist/
 *.db-wal
 *.db-shm
 
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.env.local
+.env.*.local
+
 # IDE / Editor files
 .vscode/
 .idea/
 *.swp
+
