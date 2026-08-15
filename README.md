@@ -111,8 +111,8 @@ marketplace-backend/
 
 ### 2. Clone and Setup
 ```bash
-git clone https://github.com/<your-username>/go-market.git
-cd go-market
+git clone https://github.com/mazkev/go-marketplace-backend.git
+cd go-marketplace-backend
 ```
 
 ### 3. Environment Configuration
